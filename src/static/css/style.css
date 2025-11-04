@@ -1,15 +1,30 @@
 /* Reglas CSS para los diferentes estados */
 .estado-buena {
-    background-color: #4CAF50 !important; /* Verde */
-    color: rgb(12, 12, 12) !important;
+    background-color: #28a745 !important; /* Verde */
+    color: white !important;
+}
+.estado-buena select {
+    background-color: #28a745 !important;
+    color: white !important;
+    border: 1px solid #1e7e34 !important;
 }
 
 .estado-reparada {
-    background-color: #FFA500 !important; /* Naranja */
-    color: rgb(8, 8, 8) !important;
+    background-color: #ffc107 !important; /* Amarillo */
+    color: #000 !important;
+}
+.estado-reparada select {
+    background-color: #ffc107 !important;
+    color: #000 !important;
+    border: 1px solid #e0a800 !important;
 }
 
 .estado-deshabilitada {
-    background-color: #fc0606dd !important; /* Rojo */
-    color: rgb(12, 12, 12) !important;
+    background-color: #dc3545 !important; /* Rojo */
+    color: white !important;
+}
+.estado-deshabilitada select {
+    background-color: #dc3545 !important;
+    color: white !important;
+    border: 1px solid #c82333 !important;
 }

@@ -58,11 +58,20 @@ La app levanta en `http://10.1.0.24:5000` (ajústalo en `guardar.py` si lo desea
 - Se removieron listas quemadas de salas en consultas; se ordena por `NombreSala, fecha`.
 - La exportación de PDF normaliza fechas con `STR_TO_DATE('%Y-%m-%d')` para evitar resultados vacíos.
 
+## Características de UI/UX
+- **Layout base unificado**: Navbar de navegación presente en todas las páginas.
+- **Diseño profesional**: Interfaz moderna con Bootstrap 5, iconos y cards bien estructuradas.
+- **Checklist diario mejorado**: Interfaz clara que indica que es la sesión diaria de checklist.
+- **Modal de exportación**: Reemplazo de prompts por modal con datepicker para selección de fechas.
+- **Tablas interactivas**: DataTables para búsqueda y paginación en tablas principales.
+- **Colores de estado**: Visualización intuitiva con colores (Verde=Buena, Amarillo=Reparada, Rojo=Deshabilitada).
+- **Datepicker unificado**: jQuery UI Datepicker en todos los campos de fecha.
+- **Responsive**: Diseño adaptable a diferentes tamaños de pantalla.
+
 ## Próximas mejoras sugeridas
 - Variables de entorno para `SECRET_KEY` y credenciales MySQL.
 - CSRF (Flask-WTF) y autenticación para módulos de administración.
 - Integridad referencial: migrar `experiencias.NombreSala` a `experiencias.sala_id` (FK a `salas`).
-- Datepicker unificado y tablas con paginación/búsqueda.
 - Docker Compose para app + MySQL y Alembic para migraciones.
 
 

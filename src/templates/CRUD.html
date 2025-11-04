@@ -17,17 +17,6 @@
             <div class="card-body">
                 <form action="/user1" method="POST">
 
-                    {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                                {{ message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                    {% endwith %}
-
                     <div class="row mb-3">
                         <div class="col">
                             <label>Activo</label>
@@ -37,19 +26,11 @@
                             <div class="form-group">
                                 <label for="sala">Sala:</label>
                                 <select name="NombreSala" id="sala" class="form-control mb-3">
-                                    <option value="Acuario">Acuario</option>
-                                    <option value="Musica">Musica</option>
-                                    <option value="Mente">Mente</option>
-                                    <option value="Vivario">Vivario</option>
-                                    <option value="Sala Infantil">Infantil</option>
-                                    <option value="Tiempo">Tiempo</option>
-                                    <option value="Escena">Escena</option>
-                                    <option value="Planetario 1 nivel">Planetario 1 nivel</option>
-                                    <option value="Planetario 2 nivel">Planetario 2 nivel</option>
-                                    <option value="Planetario 3 nivel">Planetario 3 nivel</option>
-                                    <option value="Taquilla Parque">Taquilla Parque</option>
-                                    <option value="Taquilla Planetario">Taquilla Planetario</option>
-                                    <option value="Correos Experiencias">Correos Experiencias</option>
+                                    {% if salas %}
+                                        {% for s in salas %}
+                                            <option value="{{ s[1] }}">{{ s[1] }}</option>
+                                        {% endfor %}
+                                    {% endif %}
                                 </select>
                             </div>
                         </div>
@@ -62,8 +43,7 @@
                             <button class="btn btn-primary mb-3 mt-4 btn-block" type="submit">GUARDAR</button>
 
                             <div class="d-flex">
-                                <a href="{{ url_for('home') }}" class="btn btn-secondary flex-grow-1">CHECKLIST</a>
-                                <a href="{{ url_for('mostrar1') }}" class="btn btn-secondary flex-grow-1">MOSTRAR</a>
+                                <a href="http://10.1.0.24:5000" class="btn btn-secondary flex-grow-1">MENU</a>
                             </div>
 
                         </div>
@@ -136,3 +116,4 @@
 
 </body>
 </html>
+

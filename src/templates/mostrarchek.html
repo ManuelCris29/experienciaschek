@@ -50,7 +50,7 @@
                     </thead>
                     <tbody>
                         {% if data %}
-                            {% for row in data %}
+                                {% for row in data %}
                                 <tr>
                                     <td>{{ row[2] if row[2] is defined else '' }}</td>
                                     <td>{{ row[0] if row[0] is defined else '' }}</td>
@@ -58,15 +58,21 @@
                                     <td>{{ row[3] if row[3] is defined else '' }}</td>
 
                                     <td class="{% if row[4] == 'BUENA' %}estado-buena{% elif row[4] == 'REPARADA' %}estado-reparada{% elif row[4] == 'DESHABILITADA' %}estado-deshabilitada{% endif %}">
-                                        {{ row[4] if row[4] is defined else '' }}
+                                        <form action="/actualizar_estado" method="POST">
+                                            <input type="hidden" name="activo" value="{{ row[0] }}">
+                                            <input type="hidden" name="fecha" value="{{ row[2] }}"> <!-- Agrega este campo oculto para enviar la fecha -->
+                                            <select name="estado" onchange="this.form.submit()">
+                                                <option value="BUENA" {% if row[4] == 'BUENA' %} selected {% endif %}>BUENA</option>
+                                                <option value="REPARADA" {% if row[4] == 'REPARADA' %} selected {% endif %}>REPARADA</option>
+                                                <option value="DESHABILITADA" {% if row[4] == 'DESHABILITADA' %} selected {% endif %}>DESHABILITADA</option>
+                                            </select>
+                                        </form>
                                     </td>
 
                                     <td>{{ row[5] if row[5] is defined else '' }}</td>
                                 </tr>
                                 <!-- Agrega declaraciones de impresión o depuración -->
-                                <script>
-                                    console.log('Contenido de row:', {{ row|tojson|safe }});
-                                </script>
+                                                              
                             {% endfor %}
                         {% else %}
                             <tr>
@@ -78,7 +84,7 @@
 
                 <div class="row">
                     <div class="col">
-                        <a href="http://10.1.4.49:5000" class="btn btn-secondary flex-grow-1">Volver al menú</a>
+                        <a href="http://10.1.0.24:5000" class="btn btn-secondary flex-grow-1">Volver al menú</a>
                         <button id="exportButton" class="btn btn-secondary flex-grow-1" onclick="abrirCalendario()">Exportar informe</button>
                     </div>
                 </div>
@@ -98,17 +104,17 @@
             // Función para abrir el calendario y redirigir a la ruta de exportación
             function abrirCalendario() {
                 // Solicitar al usuario que seleccione la fecha inicial
-                var fechaInicial = prompt("Selecciona la fecha inicial (YY-MM-DD):");
+                var fechaInicial = prompt("Selecciona la fecha inicial (YYYY-MM-DD):");
 
                 // Solicitar al usuario que seleccione la fecha final
-                var fechaFinal = prompt("Seleccione la fecha final (YY-MM-DD)");
+                var fechaFinal = prompt("Seleccione la fecha final (YYYY-MM-DD)");
 
                 // Verifica si ambas fechas se ingresaron y realiza la acción de exportación
                 if (fechaInicial && fechaFinal) {
                     // Validación de formato de fechas
                     var formatoFecha = /^\d{4}-\d{2}-\d{2}$/;
                     if (!formatoFecha.test(fechaInicial) || !formatoFecha.test(fechaFinal)) {
-                        alert("Formato de fecha incorrecto. Utiliza el formato YY-MM-DD.");
+                        alert("Formato de fecha incorrecto. Utiliza el formato YYYY-MM-DD.");
                         return;
                     }
 
